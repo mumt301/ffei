@@ -1,0 +1,251 @@
+
+@import url(http://fonts.googleapis.com/css?family=Poiret+One|Lobster|Permanent+Marker|Indie+Flower);
+
+#home {
+	background: url('home.jpg') no-repeat center center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	min-width: 750px;
+}
+
+#bio {
+	background: url('bio.jpg') no-repeat center center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	min-width: 750px;
+	overflow: hidden;
+}
+
+#disco {
+	background: url('disco.jpg') no-repeat center center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	min-width: 750px;
+}
+
+h1 {
+	visibility: hidden;
+}
+
+h2 {
+	font-family: 'Indie Flower', cursive;
+	color: #FFFFFF;
+	text-align: center;
+}
+
+.bottomleft {
+	position: fixed;
+	text-align: left;
+	bottom: 5;
+}
+
+.center {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#nav ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	text-align: center;
+	text-shadow: 0 0 0.4em #215684
+}
+
+#nav ul li {
+	display: inline;
+}
+
+#nav ul li a {
+	text-decoration: none;
+	padding: .2em 1em;
+	font-family: 'Permanent Marker', cursive;
+	color: #C4C4C4;
+	font-size: 24px;
+}
+
+#nav ul li a:hover {
+	text-decoration: none;
+	color: #008DB1;
+	text-shadow: none;
+	-webkit-transition: 500ms linear 0s;
+	-moz-transition: 500ms linear 0s;
+	-o-transition: 500ms linear 0s;
+	transition: 500ms linear 0s;
+	outline: 0 none;
+	text-shadow: 0 0 2em #008DB1
+}
+
+#home img {
+	background-color: transparent;
+}
+
+#home a {
+	text-decoration: none;
+	font-family: 'Lobster', cursive;
+	color: black;
+	font-size: 24px;
+}
+
+#home a:hover {
+	text-decoration: none;
+	color: #FAF48D;
+	text-shadow: none;
+	-webkit-transition: 500ms linear 0s;
+	-moz-transition: 500ms linear 0s;
+	-o-transition: 500ms linear 0s;
+	transition: 500ms linear 0s;
+	outline: 0 none;
+}
+
+#bio p {
+	color: #FFFFFF;
+	font-family: 'Indie Flower', cursive;
+	font-size: 18px;
+}
+
+#bio table tbody {
+	display: block;
+	height: 400px;
+	overflow-y: scroll;
+	background-color: rgba(0,0,0, 0.5);
+	border-radius: 10px;
+	border-style: solid;
+	border-width: 1px;
+	border-color: rgba(77,77,77,1.00);
+	margin-left:20px;
+	margin-right:20px;
+}
+
+#bio table thead,
+tbody tr {
+	display: table;
+	width: 100%;
+	table-layout: fixed;
+}
+
+#bio table thead {
+	width: calc(100% - 1em)
+}
+
+#bio table thead th {
+	background: #ccc;
+}
+ 
+
+#disco table {
+	margin: 0 auto;
+}
+
+#disco td {
+	text-align: center;
+	vertical-align:top;
+	font-family: 'Indie Flower', cursive;
+	color: white;
+	font-size: 19px;
+	background-color: rgba(0,0,0, 0.5);
+	border-radius: 10px;
+	border-style: solid;
+	border-width: 1px;
+	border-color: rgba(77,77,77,1.00);
+	padding: 5px;
+}
+
+/**Videos**/
+#vid {
+	background: url('video.jpg') no-repeat center center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	min-width: 750px;
+}
+
+#vid a{
+	text-decoration:none;
+	color: white;
+}
+#vid a:hover {
+	text-decoration: none;
+	color: #FAF48D;
+	text-shadow: none;
+	-webkit-transition: 500ms linear 0s;
+	-moz-transition: 500ms linear 0s;
+	-o-transition: 500ms linear 0s;
+	transition: 500ms linear 0s;
+	outline: 0 none;
+}
+
+/**Stream**/
+
+#stream {
+	background: url('stream.jpg') no-repeat center center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: 120%;
+	min-width: 750px;
+}
+
+#stream a{
+	text-decoration:none;
+	color: white;
+}
+#stream a:hover {
+	text-decoration: none;
+	color: #FAF48D;
+	text-shadow: none;
+	-webkit-transition: 500ms linear 0s;
+	-moz-transition: 500ms linear 0s;
+	-o-transition: 500ms linear 0s;
+	transition: 500ms linear 0s;
+	outline: 0 none;
+}
+
+/**Links**/
+
+#links {
+	background: url('links.jpg') no-repeat center center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	min-width: 750px;
+}
+
+#links a{
+	text-decoration:none;
+	color: white;
+}
+#links a:hover {
+	text-decoration: none;
+	color: #FAF48D;
+	text-shadow: none;
+	-webkit-transition: 500ms linear 0s;
+	-moz-transition: 500ms linear 0s;
+	-o-transition: 500ms linear 0s;
+	transition: 500ms linear 0s;
+	outline: 0 none;
+}
+
+#links ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	text-align: center;
+}
+
+#links ul li a {
+	text-decoration: none;
+	padding: .2em 1em;
+	color: #C4C4C4;
+	font-size: 24px;
+}
+

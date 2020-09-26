@@ -1,0 +1,87 @@
+
+@import url(http://fonts.googleapis.com/css?family=Architects+Daughter|Indie+Flower|Lobster);
+
+#home {
+	background: rgba(154, 178, 254, 0.75) no-repeat center center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	min-width: 750px;
+}
+
+h1 {
+	font-family: 'Architects Daughter', cursive;
+	color: rgba(14, 26, 90, 0.92);
+}
+
+.center {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+div.form {
+	display: block;
+	text-align: center;
+}
+
+form {
+	display: inline-block;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: left;
+}
+
+#home a {
+	text-decoration: none;
+	font-family: 'Lobster', cursive;
+	color: rgba(14, 26, 90, 0.92);
+	font-size: 18px;
+}
+
+#home a:hover {
+	text-decoration: none;
+	color: #FAF48D;
+	text-shadow: none;
+	-webkit-transition: 500ms linear 0s;
+	-moz-transition: 500ms linear 0s;
+	-o-transition: 500ms linear 0s;
+	transition: 500ms linear 0s;
+	outline: 0 none;
+}
+
+p {
+	color: #FFFFFF;
+	font-family: 'Indie Flower', cursive;
+	font-size: 18px;
+}
+
+table tbody {
+	display: block;
+	background-color: rgba(0,0,0, 0.5);
+	border-radius: 10px;
+	border-style: solid;
+	border-width: 1px;
+	border-color: rgba(77,77,77,1.00);
+	margin-left:20px;
+	margin-right:20px;
+}
+
+td {
+	text-align: center;
+}
+table thead,
+tbody tr {
+	display: table;
+	width: 100%;
+	table-layout: fixed;
+}
+
+table thead {
+	width: calc(100% - 1em)
+}
+
+table thead th {
+	background: #ccc;
+}
