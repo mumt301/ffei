@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Assignment 4</title>
+    <meta charset="utf-8" />
+    <link id="cssframework" rel="stylesheet" href="https://minicss.org/flavorFiles/mini-default.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body onLoad="displayTable();">
+
+    <h2 style="text-align:center">
+        Comparision of compression algorithms
+    </h2>
+    <br><br><br>
+    <div id="comparision_table" class="container"></div>
+
+    <!-- The JavaScript code of this file (most of it) -->
+    <script>
+        /* This is the data containing a portion of the discography
+        It is stored as an array of objects. */
+        let table_results = [{
+        'FileName': '<b>FileName</b>',
+        'Compression Algorithm': '<b>Compression Algorithm</b>',
+        'Bit-rate': '<b>Bit-rate</b>',
+        'Original size':'<b>Original size</b>',
+        'Compressed size':'<b>Compressed size</b>',
+        'Compression ratio':'<b>Compression ratio</b>',
+        'Link to original audio':'<b>Link to original audio</b>',
+        'Link to compressed audio':'<b>Link to compressed audio</b>',
+        'Link to residual audio':'<b>Link to residual audio</b>'
+        },
+        // row 1 mp3
+        {
+        'FileName': 'song1',
+        'Compression Algorithm': 'MP3',
+        'Bit-rate': '96kbps',
+        'Original size':'10 000kb',
+        'Compressed size':'703kb',
+        'Compression ratio':'0.0703',
+        'Link to original audio':'<a href="song1Origin.wav">Original audio</a>',
+        'Link to compressed audio':'<a href="./Wav/song1_96_mp3.wav">Compressed audio</a>',
+        'Link to residual audio':'<a href="./R/song1_96_mp3_R.wav">Residual audio</a>'
+        },
+        // row 2 mp3
+        {
+        'FileName': 'song1',
+        'Compression Algorithm': 'MP3',
+        'Bit-rate': '128kbps',
+        'Original size':'10 000kb',
+        'Compressed size':'938kb',
+        'Compression ratio':'0.0938',
+        'Link to original audio':'<a href="song1Origin.wav">Original audio</a>',
+        'Link to compressed audio':'<a href="./Wav/song1_128_mp3.wav">Compressed audio</a>',
+        'Link to residual audio':'<a href="./R/song1_128_mp3_R.wav">Residual audio</a>'
+        },
+         // row 3 mp3
+        {
+        'FileName': 'song1',
+        'Compression Algorithm': 'MP3',
+        'Bit-rate': '192kbps',
+        'Original size':'10 000kb',
+        'Compressed size':'1370kb',
+        'Compression ratio':'0.137',
+        'Link to original audio':'<a href="song1Origin.wav">Original audio</a>',
+        'Link to compressed audio':'<a href="./Wav/song1_192_mp3.wav">Compressed audio</a>',
+        'Link to residual audio':'<a href="./R/song1_192_mp3_R.wav">Residual audio</a>'
+        },
+         // row 4 mp3
+        {
+        'FileName': 'song1',
+        'Compression Algorithm': 'MP3',
+        'Bit-rate': '320kbps',
+        'Original size':'10 000kb',
+        'Compressed size':'2290kb',
+        'Compression ratio':'0.229',
+        'Link to original audio':'<a href="song1Origin.wav">Original audio</a>',
+        'Link to compressed audio':'<a href="./Wav/song1_320_mp3.wav">Compressed audio</a>',
+        'Link to residual audio':'<a href="./R/song1_320_mp3_R.wav">Residual audio</a>'
+        },
+        // row 1 mp3
+        {
+        'FileName': 'song2',
+        'Compression Algorithm': 'MP3',
+        'Bit-rate': '96kbps',
+        'Original size':'10 000kb',
+        'Compressed size':'703kb',
+        'Compression ratio':'0.0703',
+        'Link to original audio':'<a href="song2Origin.wav">Original audio</a>',
+        'Link to compressed audio':'<a href="./Wav/song2_96_mp3.wav">Compressed audio</a>',
+        'Link to residual audio':'<a href="./R/song2_96_mp3_R.wav">Residual audio</a>'
+        },
+        // row 2 mp3
+        {
+        'FileName': 'song2',
+        'Compression Algorithm': 'MP3',
+        'Bit-rate': '128kbps',
+        'Original size':'10 000kb',
+        'Compressed size':'938kb',
+        'Compression ratio':'0.0938',
+        'Link to original audio':'<a href="song2Origin.wav">Original audio</a>',
+        'Link to compressed audio':'<a href="./Wav/song2_128_mp3.wav">Compressed audio</a>',
+        'Link to residual audio':'<a href="./R/song2_128_mp3_R.wav">Residual audio</a>'
+        },
+         // row 3 mp3
+        {
+        'FileName': 'song2',
+        'Compression Algorithm': 'MP3',
+        'Bit-rate': '192kbps',
+        'Original size':'10 000kb',
+        'Compressed size':'1370kb',
+        'Compression ratio':'0.137',
+        'Link to original audio':'<a href="song2Origin.wav">Original audio</a>',
+        'Link to compressed audio':'<a href="./Wav/song2_192_mp3.wav">Compressed audio</a>',
+        'Link to residual audio':'<a href="./R/song2_192_mp3_R.wav">Residual audio</a>'
+        },
+         // row 4 mp3
+        {
+        'FileName': 'song2',
+        'Compression Algorithm': 'MP3',
+        'Bit-rate': '320kbps',
+        'Original size':'10 000kb',
+        'Compressed size':'2290kb',
+        'Compression ratio':'0.229',
+        'Link to original audio':'<a href="song2Origin.wav">Original audio</a>',
+        'Link to compressed audio':'<a href="./Wav/song2_320_mp3.wav">Compressed audio</a>',
+        'Link to residual audio':'<a href="./R/song2_320_mp3_R.wav">Residual audio</a>'
+        },
+        // row 1 AC3
+        {
+        'FileName': 'song1',
+        'Compression Algorithm': 'AC3',
+        'Bit-rate': '96kbps',
+        'Original size':'10 000kb',
+        'Compressed size':'703kb',
+        'Compression ratio':'0.0703',
+        'Link to original audio':'<a href="song1Origin.wav">Original audio</a>',
+        'Link to compressed audio':'<a href="./Wav/song1_96_ac3.wav">Compressed audio</a>',
+        'Link to residual audio':'<a href="./R/song1_96_ac3_R.wav">Residual audio</a>'
+        },
+        // row 2 AC3
+        {
+        'FileName': 'song1',
+        'Compression Algorithm': 'AC3',
+        'Bit-rate': '128kbps',
+        'Original size':'10 000kb',
+        'Compressed size':'938kb',
+        'Compression ratio':'0.0938',
+        'Link to original audio':'<a href="song1Origin.wav">Original audio</a>',
+        'Link to compressed audio':'<a href="./Wav/song1_128_ac3.wav">Compressed audio</a>',
+        'Link to residual audio':'<a href="./R/song1_128_ac3_R.wav">Residual audio</a>'
+        },
+         // row 3 AC3
+        {
+        'FileName': 'song1',
+        'Compression Algorithm': 'AC3',
+        'Bit-rate': '192kbps',
+        'Original size':'10 000kb',
+        'Compressed size':'1370kb',
+        'Compression ratio':'0.137',
+        'Link to original audio':'<a href="song1Origin.wav">Original audio</a>',
+        'Link to compressed audio':'<a href="./Wav/song1_192_ac3.wav">Compressed audio</a>',
+        'Link to residual audio':'<a href="./R/song1_192_ac3_R.wav">Residual audio</a>'
+        },
+         // row 4 AC3
+        {
+        'FileName': 'song1',
+        'Compression Algorithm': 'AC3',
+        'Bit-rate': '320kbps',
+        'Original size':'10 000kb',
+        'Compressed size':'2290kb',
+        'Compression ratio':'0.229',
+        'Link to original audio':'<a href="song1Origin.wav">Original audio</a>',
+        'Link to compressed audio':'<a href="./Wav/song1_320_ac3.wav">Compressed audio</a>',
+        'Link to residual audio':'<a href="./R/song1_320_ac3_R.wav">Residual audio</a>'
+        },
+        // row 1 AC3
+        {
+        'FileName': 'song2',
+        'Compression Algorithm': 'AC3',
+        'Bit-rate': '96kbps',
+        'Original size':'10 000kb',
+        'Compressed size':'703kb',
+        'Compression ratio':'0.0703',
+        'Link to original audio':'<a href="song2Origin.wav">Original audio</a>',
+        'Link to compressed audio':'<a href="./Wav/song2_96_ac3.wav">Compressed audio</a>',
+        'Link to residual audio':'<a href="./R/song2_96_ac3_R.wav">Residual audio</a>'
+        },
+        // row 2 AC3
+        {
+        'FileName': 'song2',
+        'Compression Algorithm': 'AC3',
+        'Bit-rate': '128kbps',
+        'Original size':'10 000kb',
+        'Compressed size':'938kb',
+        'Compression ratio':'0.0938',
+        'Link to original audio':'<a href="song2Origin.wav">Original audio</a>',
+        'Link to compressed audio':'<a href="./Wav/song2_128_ac3.wav">Compressed audio</a>',
+        'Link to residual audio':'<a href="./R/song2_128_ac3_R.wav">Residual audio</a>'
+        },
+         // row 3 AC3
+        {
+        'FileName': 'song2',
+        'Compression Algorithm': 'AC3',
+        'Bit-rate': '192kbps',
+        'Original size':'10 000kb',
+        'Compressed size':'1370kb',
+        'Compression ratio':'0.137',
+        'Link to original audio':'<a href="song2Origin.wav">Original audio</a>',
+        'Link to compressed audio':'<a href="./Wav/song2_192_ac3.wav">Compressed audio</a>',
+        'Link to residual audio':'<a href="./R/song2_192_ac3_R.wav">Residual audio</a>'
+        },
+         // row 4 AC3
+        {
+        'FileName': 'song2',
+        'Compression Algorithm': 'AC3',
+        'Bit-rate': '320kbps',
+        'Original size':'10 000kb',
+        'Compressed size':'2290kb',
+        'Compression ratio':'0.229',
+        'Link to original audio':'<a href="song2Origin.wav">Original audio</a>',
+        'Link to compressed audio':'<a href="./Wav/song2_320_ac3.wav">Compressed audio</a>',
+        'Link to residual audio':'<a href="./R/song2_320_ac3_R.wav">Residual audio</a>'
+        },
+        // row 1 M4A
+        {
+        'FileName': 'song1',
+        'Compression Algorithm': 'M4A',
+        'Bit-rate': 'low-',
+        'Original size':'10 000kb',
+        'Compressed size':'1410kb',
+        'Compression ratio':'0.141',
+        'Link to original audio':'<a href="song1Origin.wav">Original audio</a>',
+        'Link to compressed audio':'<a href="./Wav/song1_low-_m4a.wav">Compressed audio</a>',
+        'Link to residual audio':'<a href="./R/song1_low-_m4a_R.wav">Residual audio</a>'
+        },
+        // row 2 M4A
+        {
+        'FileName': 'song1',
+        'Compression Algorithm': 'M4A',
+        'Bit-rate': 'low-mid',
+        'Original size':'10 000kb',
+        'Compressed size':'1410kb',
+        'Compression ratio':'0.141',
+        'Link to original audio':'<a href="song1Origin.wav">Original audio</a>',
+        'Link to compressed audio':'<a href="./Wav/song1_low-mid_m4a.wav">Compressed audio</a>',
+        'Link to residual audio':'<a href="./R/song1_low-mid_m4a_R.wav">Residual audio</a>'
+        },
+         // row 3 M4A
+        {
+        'FileName': 'song1',
+        'Compression Algorithm': 'M4A',
+        'Bit-rate': 'high-mid',
+        'Original size':'10 000kb',
+        'Compressed size':'1410kb',
+        'Compression ratio':'0.141',
+        'Link to original audio':'<a href="song1Origin.wav">Original audio</a>',
+        'Link to compressed audio':'<a href="./Wav/song1_high-mid_m4a.wav">Compressed audio</a>',
+        'Link to residual audio':'<a href="./R/song1_high-mid_m4a_R.wav">Residual audio</a>'
+        },
+         // row 4 M4A
+        {
+        'FileName': 'song1',
+        'Compression Algorithm': 'M4A',
+        'Bit-rate': 'high',
+        'Original size':'10 000kb',
+        'Compressed size':'1410kb',
+        'Compression ratio':'0.141',
+        'Link to original audio':'<a href="song1Origin.wav">Original audio</a>',
+        'Link to compressed audio':'<a href="./Wav/song1_high_m4a.wav">Compressed audio</a>',
+        'Link to residual audio':'<a href="./R/song1_high_m4a_R.wav">Residual audio</a>'
+        },
+        // row 1 M4A
+        {
+        'FileName': 'song2',
+        'Compression Algorithm': 'M4A',
+        'Bit-rate': 'low-',
+        'Original size':'10 000kb',
+        'Compressed size':'1410kb',
+        'Compression ratio':'0.141',
+        'Link to original audio':'<a href="song2Origin.wav">Original audio</a>',
+        'Link to compressed audio':'<a href="./Wav/song2_low-_m4a.wav">Compressed audio</a>',
+        'Link to residual audio':'<a href="./R/song2_low-_m4a_R.wav">Residual audio</a>'
+        },
+        // row 2 M4A
+        {
+        'FileName': 'song2',
+        'Compression Algorithm': 'M4A',
+        'Bit-rate': 'low-mid',
+        'Original size':'10 000kb',
+        'Compressed size':'1410kb',
+        'Compression ratio':'0.141',
+        'Link to original audio':'<a href="song2Origin.wav">Original audio</a>',
+        'Link to compressed audio':'<a href="./Wav/song2_low-mid_m4a.wav">Compressed audio</a>',
+        'Link to residual audio':'<a href="./R/song2_low-mid_m4a_R.wav">Residual audio</a>'
+        },
+         // row 3 M4A
+        {
+        'FileName': 'song2',
+        'Compression Algorithm': 'M4A',
+        'Bit-rate': 'high-mid',
+        'Original size':'10 000kb',
+        'Compressed size':'1410kb',
+        'Compression ratio':'0.141',
+        'Link to original audio':'<a href="song2Origin.wav">Original audio</a>',
+        'Link to compressed audio':'<a href="./Wav/song2_high-mid_m4a.wav">Compressed audio</a>',
+        'Link to residual audio':'<a href="./R/song2_high-mid_m4a_R.wav">Residual audio</a>'
+        },
+         // row 4 M4A
+        {
+        'FileName': 'song2',
+        'Compression Algorithm': 'M4A',
+        'Bit-rate': 'high',
+        'Original size':'10 000kb',
+        'Compressed size':'1410kb',
+        'Compression ratio':'0.141',
+        'Link to original audio':'<a href="song2Origin.wav">Original audio</a>',
+        'Link to compressed audio':'<a href="./Wav/song2_high_m4a.wav">Compressed audio</a>',
+        'Link to residual audio':'<a href="./R/song2_high_m4a_R.wav">Residual audio</a>'
+        },
+        // row 1 OGG
+        {
+        'FileName': 'song1',
+        'Compression Algorithm': 'OGG',
+        'Bit-rate': 'low-',
+        'Original size':'10 000kb',
+        'Compressed size':'437kb',
+        'Compression ratio':'0.0437',
+        'Link to original audio':'<a href="song1Origin.wav">Original audio</a>',
+        'Link to compressed audio':'<a href="./Wav/song1_low-_ogg.wav">Compressed audio</a>',
+        'Link to residual audio':'<a href="./R/song1_low-_ogg_R.wav">Residual audio</a>'
+        },
+        // row 2 OGG
+        {
+        'FileName': 'song1',
+        'Compression Algorithm': 'OGG',
+        'Bit-rate': 'low-mid',
+        'Original size':'10 000kb',
+        'Compressed size':'953kb',
+        'Compression ratio':'0.0953',
+        'Link to original audio':'<a href="song1Origin.wav">Original audio</a>',
+        'Link to compressed audio':'<a href="./Wav/song1_low-mid_ogg.wav">Compressed audio</a>',
+        'Link to residual audio':'<a href="./R/song1_low-mid_ogg_R.wav">Residual audio</a>'
+        },
+         // row 3 OGG
+        {
+        'FileName': 'song1',
+        'Compression Algorithm': 'OGG',
+        'Bit-rate': 'high-mid',
+        'Original size':'10 000kb',
+        'Compressed size':'1350kb',
+        'Compression ratio':'0.135',
+        'Link to original audio':'<a href="song1Origin.wav">Original audio</a>',
+        'Link to compressed audio':'<a href="./Wav/song1_high-mid_ogg.wav">Compressed audio</a>',
+        'Link to residual audio':'<a href="./R/song1_high-mid_ogg_R.wav">Residual audio</a>'
+        },
+         // row 4 OGG
+        {
+        'FileName': 'song1',
+        'Compression Algorithm': 'OGG',
+        'Bit-rate': 'high',
+        'Original size':'10 000kb',
+        'Compressed size':'3160kb',
+        'Compression ratio':'0.316',
+        'Link to original audio':'<a href="song1Origin.wav">Original audio</a>',
+        'Link to compressed audio':'<a href="./Wav/song1_high_ogg.wav">Compressed audio</a>',
+        'Link to residual audio':'<a href="./R/song1_high_ogg_R.wav">Residual audio</a>'
+        },
+        // row 1 OGG
+        {
+        'FileName': 'song2',
+        'Compression Algorithm': 'OGG',
+        'Bit-rate': 'low-',
+        'Original size':'10 000kb',
+        'Compressed size':'408kb',
+        'Compression ratio':'0.0408',
+        'Link to original audio':'<a href="song2Origin.wav">Original audio</a>',
+        'Link to compressed audio':'<a href="./Wav/song2_low-_ogg.wav">Compressed audio</a>',
+        'Link to residual audio':'<a href="./R/song2_low-_ogg_R.wav">Residual audio</a>'
+        },
+        // row 2 OGG
+        {
+        'FileName': 'song2',
+        'Compression Algorithm': 'OGG',
+        'Bit-rate': 'low-mid',
+        'Original size':'10 000kb',
+        'Compressed size':'953kb',
+        'Compression ratio':'0.0953',
+        'Link to original audio':'<a href="song2Origin.wav">Original audio</a>',
+        'Link to compressed audio':'<a href="./Wav/song2_low-mid_ogg.wav">Compressed audio</a>',
+        'Link to residual audio':'<a href="./R/song2_low-mid_ogg_R.wav">Residual audio</a>'
+        },
+         // row 3 OGG
+        {
+        'FileName': 'song2',
+        'Compression Algorithm': 'OGG',
+        'Bit-rate': 'high-mid',
+        'Original size':'10 000kb',
+        'Compressed size':'1300kb',
+        'Compression ratio':'0.13',
+        'Link to original audio':'<a href="song2Origin.wav">Original audio</a>',
+        'Link to compressed audio':'<a href="./Wav/song2_high-mid_ogg.wav">Compressed audio</a>',
+        'Link to residual audio':'<a href="./R/song2_high-mid_ogg_R.wav">Residual audio</a>'
+        },
+         // row 4 OGG
+        {
+        'FileName': 'song2',
+        'Compression Algorithm': 'OGG',
+        'Bit-rate': 'high',
+        'Original size':'10 000kb',
+        'Compressed size':'3040kb',
+        'Compression ratio':'0.304',
+        'Link to original audio':'<a href="song2Origin.wav">Original audio</a>',
+        'Link to compressed audio':'<a href="./Wav/song2_high_ogg.wav">Compressed audio</a>',
+        'Link to residual audio':'<a href="./R/song2_high_ogg_R.wav">Residual audio</a>'
+        }
+        ]
+
+        function displayTable() {
+            let table = document.createElement('table');
+            table.id = "table";
+            for (row = 0; row < table_results.length; row++) {
+                tr = document.createElement('tr');
+                let columns = Object.keys(table_results[row]);
+                for (col = 0; col < columns.length; col++) {
+                    td = document.createElement('td');
+                    td.style.border = 'solid 2px black';
+                    td.style.textAlign= "center";
+                    tr.appendChild(td);
+                    td.innerHTML = table_results[row][columns[col]];
+                }
+                table.appendChild(tr);
+            }
+            document.getElementById("comparision_table").appendChild(table);
+        }
+    </script>
+</body>
+
+</html>
