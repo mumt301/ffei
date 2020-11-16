@@ -112,8 +112,11 @@
                   albums.push(all[i]);
                 }
               }
-              displayTable(albums);
-              console.log(albums);
+             
+              //console.log(new Date(albums[0].getElementsByTagName('first-release-date')[0].innerHTML));
+              sortedAlbums=albums.sort((a,b)=>new Date(a.getElementsByTagName('first-release-date')[0].innerHTML) - new Date(b.getElementsByTagName('first-release-date')[0].innerHTML));
+              displayTable(sortedAlbums);
+              //console.log(sortedAlbums);
             }
 
             function displayTable(albums) {
