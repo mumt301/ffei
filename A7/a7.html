@@ -1,0 +1,138 @@
+<html>
+  <head>
+    <title>Assignment 7</title>
+    <link rel="stylesheet" href="https://minicss.org/flavorFiles/mini-default.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+<body data-new-gr-c-s-check-loaded="14.984.0" data-gr-ext-installed="">
+		<div>
+        <h1>Type the name of track and the artist</h1>
+
+        <!-- Step 2: Create a form to enter the artist name -->
+        <form>
+            <label for="track">Track:</label>
+            <br>
+            <input type="text" name="trackName" id="track">
+            <br>
+            <label for="artist">Artist name:</label>
+            <br>
+            <input type="text" name="artistName" id="artist">
+            <br>
+            <input type="submit">
+        </form>
+		</div>
+        <!-- placeholder for results to be rendered in step 7 -->
+         <div id="table" class="container"></div>
+
+
+        <script type="text/JavaScript">
+        	
+        	const apiKey = "43995127bc3e2f682fce39defe4de214"; // Use your own API Key
+        	// This variable has been defined globally rather than within a function, since more than one function uses it
+        	var bios = [];
+        	var imgs=[];
+        	var counter=0;
+
+            function queryArtist() {
+            	// Step 3: Retrieve the data submitted through the form
+                let params = (new URL(document.location)).searchParams;
+                if (params.has('artistName')&&params.has('trackName')) {
+                    let artistName = params.get('artistName');
+                    let trackName = params.get('trackName');
+                    console.log(artistName);
+                    console.log(trackName);
+                    // Step 4: Check the Last.fm API call and response to get information about an 'artist'
+                    // Crafting the API call/message
+                    let queryURL = "https://ws.audioscrobbler.com/2.0/" + "?method=track.getSimilar&artist=" + artistName+"&track="+trackName + "&api_key=" + apiKey;
+                    console.log(queryURL);
+
+                    // Step 5: Make the request 
+                    // (Use last class's httpGet function with the given URL and a callback function for processig the response)
+                    httpGet(queryURL, getTracks);
+                }
+            }
+
+            // Step 5: Make the request 
+            function httpGet(theURL, cbFunction) {
+                // Create a new XMLHttpRequest object
+                let xmlHttp = new XMLHttpRequest();
+                // Specify the request method and URL, and send the request to the server
+                xmlHttp.open("GET", theURL);
+                xmlHttp.send();
+
+                // Wait for the response to be ready
+                xmlHttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        // when the response is ready, call the callback function
+                        // to parse the response and render the coresponding results
+                        cbFunction(this); 
+                    }
+                };
+            }
+
+            function getTracks(xhttp) {
+
+                // Get the response and store it in a variable
+                let retrievedData = xhttp.responseXML;
+                console.log(retrievedData);
+                
+                for(var i=0;i<10;i++){
+                	let trackName=retrievedData.getElementsByTagName("name")[i*2].innerHTML;
+                	let artist=retrievedData.getElementsByTagName("name")[i*2+1].innerHTML;
+                	console.log(trackName);
+                	console.log(artist);
+
+                	// request for bio and img
+                	let queryURL = "https://ws.audioscrobbler.com/2.0/" + "?method=track.getInfo"+ "&api_key=" + apiKey+"&artist=" + artist+"&track="+trackName ;
+                    console.log(queryURL);
+                    httpGet(queryURL, getBioAndImage);
+                }
+            }
+
+            function getBioAndImage(xhttp) {
+            	counter=counter+1;
+                // Get the response and store it in a variable
+                let retrievedData = xhttp.responseXML;
+                console.log(retrievedData);
+
+                // // Parse the response
+                if(retrievedData.getElementsByTagName("content")[0] != null&&retrievedData.getElementsByTagName("image")[3]!=null){
+				     let bioContent = retrievedData.getElementsByTagName("content")[0].innerHTML;
+				     let imageURL = retrievedData.getElementsByTagName("image")[3].innerHTML;
+				     console.log(bioContent);
+                	 bios.push(bioContent);
+              		 console.log(imageURL);
+                     imgs.push(imageURL);
+				}
+
+				if(counter==10){
+					displayTable();
+				}
+            }
+
+            function displayTable(){
+            	console.log("here"+bios.length);
+            	let table = document.createElement('table');
+              	table.id = "table";
+              	table.style.overflow="visible";
+              	for (row = 0; row < 5; row++) {
+              		tr = document.createElement('tr');
+              		let bio = document.createElement("p");
+                	bio.innerHTML = bios[row];
+                	let image = document.createElement("img");
+                	image.src = imgs[row];
+                	td = document.createElement('td');
+                  	td.style.border = 'solid 2px black';
+                  	td.style.textAlign= "left";
+                  	tr.appendChild(td);
+                  	td.appendChild(bio);
+                  	td.appendChild(image);
+                  	table.appendChild(tr);
+              	}
+              	document.getElementById("table").appendChild(table);
+            }
+
+            window.onload = queryArtist;
+        </script>
+	</body>
+</html>
